@@ -27,11 +27,14 @@ variable "sub_pub_id_mdl" {
 
 # --- local variables
 
-variable "rt_pub_tag" {
-  description = "public route table tag"
-  type        = string
-  default     = "webserver_public_route_table"
-}
+
+# variable "rt_pub_tag" {
+#   description = "public route table tag"
+#   type        = string
+#   default     = "webserver_public_route_table"
+# }
+
+
 
 variable "rt_pub_asso_tag" {
   description = "public route table association tag"

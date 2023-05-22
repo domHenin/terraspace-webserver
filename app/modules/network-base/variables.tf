@@ -13,7 +13,7 @@ variable "vpc_cidr" {
 variable "vpc_tags" {
   description = "tags for VPC"
   type        = string
-  default     = "vpc_wonder_lab"
+  default     = "vpc_ws"
 }
 
 # ------------------------------
@@ -50,5 +50,5 @@ variable "priv_sub_tags" {
 variable "wl_igw_tags" {
   description = "tags for internet gateway"
   type        = string
-  default     = "wl_igw"
+  default     = "internet-gateway-ws"
 }

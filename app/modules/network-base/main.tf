@@ -16,7 +16,7 @@ resource "aws_vpc" "vpc_ws_rsrc" {
 
 #-- Resource: AWS Public Subnet
 resource "aws_subnet" "sub_pub_rsrc" {
-  vpc_id     = aws_vpc.vpc_ws.id
+  vpc_id     = aws_vpc.vpc_ws_rsrc.id
   cidr_block = var.pub_sub_cidr
 
   tags = {
@@ -26,7 +26,7 @@ resource "aws_subnet" "sub_pub_rsrc" {
 
 #-- Resource: AWS Private Subnet
 resource "aws_subnet" "sub_priv_rsrc" {
-  vpc_id     = aws_vpc.vpc_ws.id
+  vpc_id     = aws_vpc.vpc_ws_rsrc.id
   cidr_block = var.priv_sub_cidr
 
   tags = {
@@ -49,3 +49,8 @@ resource "aws_internet_gateway_attachment" "igw_ws_att" {
   internet_gateway_id = aws_internet_gateway.igw_ws_rsrc.id
   vpc_id              = aws_vpc.vpc_ws_rsrc.id
 }
+
+
+
+
+#-- Resource: AWS Route Table
