@@ -7,17 +7,17 @@
 
 output "vpc_id_output" {
   description = "output vpc id"
-  value       = aws_vpc.vpc_wonder_lab.id
+  value       = aws_vpc.vpc_ws_rsrc.id
 }
 
 output "sub_pub_id_output" {
   description = "output public subnet"
-  value       = aws_subnet.public_subnet.id
+  value       = aws_subnet.sub_pub_rsrc.id
 }
 
 output "sub_priv__id_output" {
   description = "output private subnet"
-  value       = aws_subnet.private_subnet.id
+  value       = aws_subnet.sub_priv_rsrc.id
 }
 
 
