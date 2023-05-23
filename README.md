@@ -64,13 +64,18 @@ terraspace-webserver/
 
 # Documentation
 
+- Current Behavior 002: this issue was from me creating an Internet Gateway attachement. [See Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/internet_gateway) and read **Argument Reference** that state the *aws_internet_gateway_attachment resource for an alternate way to attach an Internet Gateway to a VPC.*
+
 ## Expected Behaviour
-- EB 001:: `Plan: 9 to add, 0 to change, 0 to destroy.`
+- Expected Behaviour 001:: `Plan: 9 to add, 0 to change, 0 to destroy.`
+- Expected Behaviour 002:: `terraspace plan compute-stack:  Plan: 9 to add, 0 to change, 0 to destroy.
+terraspace plan network-stack:  Plan: 2 to add, 0 to change, 0 to destroy.`
+- Expected Behaviour 003:: `terraspace up network-stack Plan: 7 to add, 0 to change, 0 to destroy.`
 
 ------------
 
 ## Current Behavior
-- EB 001:: 
+- Current Behavior 001:: 
 ```sh
 │ Error: creating route: one of `carrier_gateway_id, core_network_arn, egress_only_gateway_id, gateway_id, instance_id, local_gateway_id, nat_gateway_id, network_interface_id, transit_gateway_id, vpc_endpoint_id, vpc_peering_connection_id` must be specified
 │
@@ -94,4 +99,24 @@ terraspace-webserver/
 │   with module.security_group-base.aws_security_group.sg_ajar,
 │   on ../../modules/security_group-base/main.tf line 8, in resource "aws_security_group" "sg_ajar":
 │    8: resource "aws_security_group" "sg_ajar" {
+```
+
+- Current Behavior 002::
+ ````sh
+terraspace up compute-stack:  │ Error: creating EC2 Internet Gateway Attachment: error attaching EC2 Internet Gateway to VPC: Resource.AlreadyAssociated: resource is already attached to network
+terraspace up network-stack:  │ Error: creating EC2 Internet Gateway Attachment: error attaching EC2 Internet Gateway to VPC: Resource.AlreadyAssociated: resource is already attached to network 
+terraspace up network-stack:  │ Error: creating Route Table Association: Resource.AlreadyAssociated: the specified association for route table conflicts with an existing association
+Error running: terraspace up compute-stack. Fix the error above or check logs for the error.
+Error running: terraspace up network-stack. Fix the error above or check logs for the error.
+````
+
+- Current Behavior 003:: 
+ ```sh
+╷
+│ Error: creating Route in Route Table (rtb-020fb50db062b2251) with destination (0.0.0.0/0): InvalidParameterValue: route table rtb-020fb50db062b2251 and network gateway igw-0a87b0d01921b5497 belong to different networks
+│       status code: 400, request id: 5dc5b440-a736-4bf8-9da0-9cc29cecd34f
+│
+│   with module.network-base.aws_route_table.rt_pub_rsrc,
+│   on ../../modules/network-base/main.tf line 58, in resource "aws_route_table" "rt_pub_rsrc":
+│   58: resource "aws_route_table" "rt_pub_rsrc" {
 ```

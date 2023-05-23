@@ -4,6 +4,8 @@
 #----------------------------------------------#
 
 # output: subnet_id --- public/private
+# output: vpc_id
+# output: internet-gateway_id
 
 output "vpc_id_output" {
   description = "output vpc id"
@@ -15,13 +17,14 @@ output "sub_pub_id_output" {
   value       = aws_subnet.sub_pub_rsrc.id
 }
 
-output "sub_priv__id_output" {
+output "sub_priv_id_output" {
   description = "output private subnet"
   value       = aws_subnet.sub_priv_rsrc.id
 }
 
 
-# output "igw_id_output" {
-#   description = "outuput internet gateway"
-#   value       = aws_internet_gateway.igw_ws_rsrc.id
-# }
+output "igw_id_output" {
+  description = "outuput internet gateway"
+  value       = aws_internet_gateway.igw_ws_rsrc.id
+}
+

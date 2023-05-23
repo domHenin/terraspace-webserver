@@ -34,23 +34,165 @@ resource "aws_subnet" "sub_priv_rsrc" {
   }
 }
 
+#--------------------------------------------
+
 #-- Resource: AWS Internet Gateway
-# resource "aws_internet_gateway" "igw_ws_rsrc" {
-#   vpc_id = aws_vpc.vpc_ws_rsrc.id
+resource "aws_internet_gateway" "igw_ws_rsrc" {
+  # vpc_id = aws_vpc.vpc_ws_rsrc.id
 
-#   tags = {
-#     Name = var.wl_igw_tags
-#   }
-# }
+  tags = {
+    Name = var.wl_igw_tags
+  }
+}
 
-
-# #-- Resource: AWS Internet Gateway Attachment
+#-- Resource: AWS Internet Gateway Attachment
 # resource "aws_internet_gateway_attachment" "igw_ws_att" {
 #   internet_gateway_id = aws_internet_gateway.igw_ws_rsrc.id
 #   vpc_id              = aws_vpc.vpc_ws_rsrc.id
 # }
 
-
-
+#--------------------------------------------
 
 #-- Resource: AWS Route Table
+# public route table
+resource "aws_route_table" "rt_pub_rsrc" {
+  vpc_id = aws_vpc.vpc_ws_rsrc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw_ws_rsrc.id
+  }
+
+  tags = {
+    Name = var.rt_pub_tag
+  }
+}
+
+# AWS Resource: public route table associate
+# resource "aws_route_table_association" "rt_pub_asso" {
+#   subnet_id      = aws_subnet.sub_pub_rsrc.id
+#   route_table_id = aws_route_table.rt_pub_rsrc.id
+# }
+
+
+#--------------------------------------------
+
+# AWS Resource: private route table
+# resource "aws_route_table" "private_rt" {
+#   vpc_id = aws_vpc.vpc_ws_rsrc.id
+
+#   route {
+#     cidr_block = "0.0.0.0/0" #variable?
+#     gateway_id = aws_internet_gateway.igw_ws_rsrc.id
+#   }
+
+#     # route {
+#     #   ipv6_cidr_block        = "::/0"
+#     #   egress_only_gateway_id = aws_egress_only_internet_gateway.example.id
+#     # }
+
+#   tags = {
+#     Name = var.rt_pub_asso_tag
+#   }
+# }
+
+
+# AWS Resource: private route table associate
+# resource "aws_route_table_association" "private_rt_asso" {
+#   subnet_id      = aws_subnet.sub_priv_rsrc.id
+#   route_table_id = aws_route_table.private_rt.id
+# }
+
+#--------------------------------------------
+
+#-- Resource: AWS Security Group Open
+resource "aws_security_group" "sg_ajar" {
+  vpc_id = aws_vpc.vpc_ws_rsrc.id
+  # name = join("_", ["sg", var.vpc_id_mdl])
+  name = var.sg_ajar_name
+  dynamic "ingress" {
+    for_each = var.ajar_rules
+    content {
+      from_port   = ingress.value["port"]
+      to_port     = ingress.value["port"]
+      protocol    = ingress.value["proto"]
+      cidr_blocks = ingress.value["cidr_blocks"]
+    }
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    "Name" = var.ajar_sg_tag
+  }
+}
+
+
+resource "aws_security_group" "sg_secure" {
+  vpc_id = aws_vpc.vpc_ws_rsrc.id
+  # name = join("_", ["sg", var.vpc_id_mdl])
+  name = var.sg_priv_name
+  dynamic "ingress" {
+    for_each = var.private_rules
+    content {
+      from_port   = ingress.value["port"]
+      to_port     = ingress.value["port"]
+      protocol    = ingress.value["proto"]
+      cidr_blocks = ingress.value["cidr_blocks"]
+    }
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    "Name" = var.priv_sg_tag
+  }
+}
+
+
+#---- graveyard
+# resource "aws_security_group" "sg_secure_connection" {
+# #   name        = var.private_sg_name
+# #   description = var.private_sg_description
+#   vpc_id      = var.vpc_id_mdl
+
+#   ingress {
+#     description      = "Allow traffic on port 22 from everywhere"
+#     from_port        = 22
+#     to_port          = 22
+#     protocol         = "tcp"
+#     cidr_blocks      = ["0.0.0.0/0"]
+#     ipv6_cidr_blocks = ["::/0"]
+#   }
+
+#   egress {
+#     from_port        = 0
+#     to_port          = 0
+#     protocol         = "-1"
+#     cidr_blocks      = ["0.0.0.0/0"]
+#     ipv6_cidr_blocks = ["::/0"]
+#   }
+
+#   tags = {
+#     Name = var.private_sg_tag
+#   }
+# }
+
+
+
+#-- Resource: AWS NAT Gateway
+# resource "aws_nat_gateway" "example" {
+#   allocation_id = aws_eip.example.id
+#   subnet_id     = aws_subnet.example.id
+
+#   tags = {
+#     Name = "gw NAT"
+#   }
