@@ -21,7 +21,7 @@ output "sub_priv__id_output" {
 }
 
 
-output "igw_id_output" {
-  description = "outuput internet gateway"
-  value       = aws_internet_gateway.igw_ws_rsrc.id
-}
+# output "igw_id_output" {
+#   description = "outuput internet gateway"
+#   value       = aws_internet_gateway.igw_ws_rsrc.id
+# }

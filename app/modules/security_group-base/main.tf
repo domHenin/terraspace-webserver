@@ -8,7 +8,7 @@
 resource "aws_security_group" "sg_ajar" {
   vpc_id = var.vpc_id_mdl
   #   name   = join("_", ["sg", aws_vpc.vpc_wonder_lab.id])
-  name = join("_", ["sg-ajar", var.vpc_id_mdl])
+  name = join("_", ["sg", var.vpc_id_mdl])
   dynamic "ingress" {
     for_each = var.ajar_rules
     content {
@@ -34,7 +34,7 @@ resource "aws_security_group" "sg_ajar" {
 resource "aws_security_group" "sg_secure" {
   vpc_id = var.vpc_id_mdl
   #   name   = join("_", ["sg", aws_vpc.vpc_wonder_lab.id])
-  name = join("_", ["sg-secur", var.vpc_id_mdl])
+  name = join("_", ["sg", var.vpc_id_mdl])
   dynamic "ingress" {
     for_each = var.private_rules
     content {
