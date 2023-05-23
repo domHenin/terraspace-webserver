@@ -35,20 +35,20 @@ resource "aws_subnet" "sub_priv_rsrc" {
 }
 
 #-- Resource: AWS Internet Gateway
-resource "aws_internet_gateway" "igw_ws_rsrc" {
-  vpc_id = aws_vpc.vpc_ws_rsrc.id
+# resource "aws_internet_gateway" "igw_ws_rsrc" {
+#   vpc_id = aws_vpc.vpc_ws_rsrc.id
 
-  tags = {
-    Name = var.wl_igw_tags
-  }
-}
+#   tags = {
+#     Name = var.wl_igw_tags
+#   }
+# }
 
 
-#-- Resource: AWS Internet Gateway Attachment
-resource "aws_internet_gateway_attachment" "igw_ws_att" {
-  internet_gateway_id = aws_internet_gateway.igw_ws_rsrc.id
-  vpc_id              = aws_vpc.vpc_ws_rsrc.id
-}
+# #-- Resource: AWS Internet Gateway Attachment
+# resource "aws_internet_gateway_attachment" "igw_ws_att" {
+#   internet_gateway_id = aws_internet_gateway.igw_ws_rsrc.id
+#   vpc_id              = aws_vpc.vpc_ws_rsrc.id
+# }
 
 
 

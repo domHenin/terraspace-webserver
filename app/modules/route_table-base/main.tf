@@ -8,20 +8,20 @@ resource "aws_route_table" "rt_pub_rsrc" {
   vpc_id = var.vpc_id_mdl
 
   route {
-    cidr_block = "0.0.0.0/0" #variable?
-    gateway_id = var.igw_id_mdl
+    cidr_block = "0.0.0.0/0"
+    # gateway_id = var.igw_id_mdl
   }
 
-  # tags = {
-  #   Name = var.rt_pub_tag
-  # }
+  tags = {
+    Name = var.rt_pub_tag
+  }
 }
 
 # AWS Resource: public route table associate
-# resource "aws_route_table_association" "rt_pub_asso" {
-#   subnet_id      = var.sub_pub_id_mdl
-#   route_table_id = aws_route_table.rt_pub_rsrc.id
-# }
+resource "aws_route_table_association" "rt_pub_asso" {
+  subnet_id      = var.sub_pub_id_mdl
+  route_table_id = aws_route_table.rt_pub_rsrc.id
+}
 
 
 #--------------------------------------------
@@ -32,7 +32,7 @@ resource "aws_route_table" "private_rt" {
 
   route {
     cidr_block = "0.0.0.0/0" #variable?
-    gateway_id = var.igw_id_mdl
+    # gateway_id = var.igw_id_mdl
   }
 
   #   route {
@@ -47,7 +47,7 @@ resource "aws_route_table" "private_rt" {
 
 
 # AWS Resource: private route table associate
-# resource "aws_route_table_association" "private_rt_asso" {
-#   subnet_id      = var.sub_pub_id_mdl
-#   route_table_id = aws_route_table.private_rt.id
-# }
+resource "aws_route_table_association" "private_rt_asso" {
+  subnet_id      = var.sub_pub_id_mdl
+  route_table_id = aws_route_table.private_rt.id
+}
