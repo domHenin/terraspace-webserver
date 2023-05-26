@@ -38,13 +38,14 @@ resource "aws_subnet" "sub_priv_rsrc" {
 
 #-- Resource: AWS Internet Gateway
 resource "aws_internet_gateway" "igw_ws_rsrc" {
-  # vpc_id = aws_vpc.vpc_ws_rsrc.id
+  vpc_id = aws_vpc.vpc_ws_rsrc.id
 
   tags = {
     Name = var.wl_igw_tags
   }
 }
 
+# NOT NEEDED lines 50-53
 #-- Resource: AWS Internet Gateway Attachment
 # resource "aws_internet_gateway_attachment" "igw_ws_att" {
 #   internet_gateway_id = aws_internet_gateway.igw_ws_rsrc.id
@@ -69,14 +70,14 @@ resource "aws_route_table" "rt_pub_rsrc" {
 }
 
 # AWS Resource: public route table associate
-# resource "aws_route_table_association" "rt_pub_asso" {
-#   subnet_id      = aws_subnet.sub_pub_rsrc.id
-#   route_table_id = aws_route_table.rt_pub_rsrc.id
-# }
+resource "aws_route_table_association" "rt_pub_asso" {
+  subnet_id      = aws_subnet.sub_pub_rsrc.id
+  route_table_id = aws_route_table.rt_pub_rsrc.id
+}
 
 
 #--------------------------------------------
-
+#### Commenting lines 81-104 for testing purposes; keep getting error for Route Table :- wondering if its bcuz im attaching the same igw to two different rt
 # AWS Resource: private route table
 # resource "aws_route_table" "private_rt" {
 #   vpc_id = aws_vpc.vpc_ws_rsrc.id

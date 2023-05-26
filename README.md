@@ -66,11 +66,13 @@ terraspace-webserver/
 
 - Current Behavior 002: this issue was from me creating an Internet Gateway attachement. [See Docs](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/internet_gateway) and read **Argument Reference** that state the *aws_internet_gateway_attachment resource for an alternate way to attach an Internet Gateway to a VPC.*
 
-## Expected Behaviour
-- Expected Behaviour 001:: `Plan: 9 to add, 0 to change, 0 to destroy.`
-- Expected Behaviour 002:: `terraspace plan compute-stack:  Plan: 9 to add, 0 to change, 0 to destroy.
+## Expected Behavior
+- Expected Behavior 001:: `Plan: 9 to add, 0 to change, 0 to destroy.`
+- Expected Behavior 002:: `terraspace plan compute-stack:  Plan: 9 to add, 0 to change, 0 to destroy.
 terraspace plan network-stack:  Plan: 2 to add, 0 to change, 0 to destroy.`
-- Expected Behaviour 003:: `terraspace up network-stack Plan: 7 to add, 0 to change, 0 to destroy.`
+- Expected Behavior 003:: `terraspace up network-stack -- Plan: 7 to add, 0 to change, 0 to destroy.`
+- ∆**Expected Behavior 004**∇: `Plan: 8 to add, 0 to change, 0 to destroy.`
+
 
 ------------
 
@@ -119,4 +121,8 @@ Error running: terraspace up network-stack. Fix the error above or check logs fo
 │   with module.network-base.aws_route_table.rt_pub_rsrc,
 │   on ../../modules/network-base/main.tf line 58, in resource "aws_route_table" "rt_pub_rsrc":
 │   58: resource "aws_route_table" "rt_pub_rsrc" {
+```
+- ∆**Current Behavior 004**∇:: 
+```sh
+Apply complete! Resources: 8 added, 0 changed, 0 destroyed.
 ```
