@@ -45,13 +45,6 @@ resource "aws_internet_gateway" "igw_ws_rsrc" {
   }
 }
 
-# NOT NEEDED lines 50-53
-#-- Resource: AWS Internet Gateway Attachment
-# resource "aws_internet_gateway_attachment" "igw_ws_att" {
-#   internet_gateway_id = aws_internet_gateway.igw_ws_rsrc.id
-#   vpc_id              = aws_vpc.vpc_ws_rsrc.id
-# }
-
 #--------------------------------------------
 
 #-- Resource: AWS Route Table
@@ -74,37 +67,6 @@ resource "aws_route_table_association" "rt_pub_asso" {
   subnet_id      = aws_subnet.sub_pub_rsrc.id
   route_table_id = aws_route_table.rt_pub_rsrc.id
 }
-
-
-#--------------------------------------------
-#### Commenting lines 81-104 for testing purposes; keep getting error for Route Table :- wondering if its bcuz im attaching the same igw to two different rt
-# AWS Resource: private route table
-# resource "aws_route_table" "private_rt" {
-#   vpc_id = aws_vpc.vpc_ws_rsrc.id
-
-#   route {
-#     cidr_block = "0.0.0.0/0" #variable?
-#     gateway_id = aws_internet_gateway.igw_ws_rsrc.id
-#   }
-
-#     # route {
-#     #   ipv6_cidr_block        = "::/0"
-#     #   egress_only_gateway_id = aws_egress_only_internet_gateway.example.id
-#     # }
-
-#   tags = {
-#     Name = var.rt_pub_asso_tag
-#   }
-# }
-
-
-# AWS Resource: private route table associate
-# resource "aws_route_table_association" "private_rt_asso" {
-#   subnet_id      = aws_subnet.sub_priv_rsrc.id
-#   route_table_id = aws_route_table.private_rt.id
-# }
-
-#--------------------------------------------
 
 #-- Resource: AWS Security Group Open
 resource "aws_security_group" "sg_ajar" {
@@ -160,40 +122,30 @@ resource "aws_security_group" "sg_secure" {
 
 
 #---- graveyard
-# resource "aws_security_group" "sg_secure_connection" {
-# #   name        = var.private_sg_name
-# #   description = var.private_sg_description
-#   vpc_id      = var.vpc_id_mdl
+# AWS Resource: private route table
+# resource "aws_route_table" "private_rt" {
+#   vpc_id = aws_vpc.vpc_ws_rsrc.id
 
-#   ingress {
-#     description      = "Allow traffic on port 22 from everywhere"
-#     from_port        = 22
-#     to_port          = 22
-#     protocol         = "tcp"
-#     cidr_blocks      = ["0.0.0.0/0"]
-#     ipv6_cidr_blocks = ["::/0"]
+#   route {
+#     cidr_block = "0.0.0.0/0" #variable?
+#     gateway_id = aws_internet_gateway.igw_ws_rsrc.id
 #   }
 
-#   egress {
-#     from_port        = 0
-#     to_port          = 0
-#     protocol         = "-1"
-#     cidr_blocks      = ["0.0.0.0/0"]
-#     ipv6_cidr_blocks = ["::/0"]
-#   }
+#     # route {
+#     #   ipv6_cidr_block        = "::/0"
+#     #   egress_only_gateway_id = aws_egress_only_internet_gateway.example.id
+#     # }
 
 #   tags = {
-#     Name = var.private_sg_tag
+#     Name = var.rt_pub_asso_tag
 #   }
 # }
 
 
+# AWS Resource: private route table associate
+# resource "aws_route_table_association" "private_rt_asso" {
+#   subnet_id      = aws_subnet.sub_priv_rsrc.id
+#   route_table_id = aws_route_table.private_rt.id
+# }
 
-#-- Resource: AWS NAT Gateway
-# resource "aws_nat_gateway" "example" {
-#   allocation_id = aws_eip.example.id
-#   subnet_id     = aws_subnet.example.id
-
-#   tags = {
-#     Name = "gw NAT"
-#   }
+#--------------------------------------------
