@@ -72,6 +72,9 @@ terraspace-webserver/
 terraspace plan network-stack:  Plan: 2 to add, 0 to change, 0 to destroy.`
 - Expected Behavior 003:: `terraspace up network-stack -- Plan: 7 to add, 0 to change, 0 to destroy.`
 - ∆**Expected Behavior 004**∇: `Plan: 8 to add, 0 to change, 0 to destroy.`
+- ∆**Expected Behaviour 005**∇: `terraspace plan compute-stack:  Plan: 10 to add, 0 to change, 0 to destroy.
+terraspace plan network-stack:  Plan: 8 to add, 0 to change, 0 to destroy.`
+
 
 
 ------------
@@ -125,4 +128,8 @@ Error running: terraspace up network-stack. Fix the error above or check logs fo
 - ∆**Current Behavior 004**∇:: 
 ```sh
 Apply complete! Resources: 8 added, 0 changed, 0 destroyed.
+```
+- - ∆**Current Behavior 005**∇:: 
+```sh
+Apply complete! Resources: 18 added, 0 changed, 0 destroyed.
 ```
