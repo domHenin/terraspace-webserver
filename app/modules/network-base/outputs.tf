@@ -28,3 +28,13 @@ output "igw_id_output" {
   value       = aws_internet_gateway.igw_ws_rsrc.id
 }
 
+output "sg_ajar_id_output" {
+  description = "output security group ajar"
+  value = aws_security_group.sg_ajar.id  
+}
+
+output "sg_priv_id_output" {
+  description = "output security group private"
+  value = aws_security_group.sg_secure.id
+}
+
