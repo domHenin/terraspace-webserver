@@ -133,3 +133,10 @@ Apply complete! Resources: 8 added, 0 changed, 0 destroyed.
 ```sh
 Apply complete! Resources: 18 added, 0 changed, 0 destroyed.
 ```
+
+-------------------
+
+
+### Notes:
+
+- after each acg enviroment del .tfstate file from compute-stack and network-stack
