@@ -12,6 +12,7 @@ The idea of this project is to build a Webserver using Terraform Infrastructure.
 - [Terraspace Framework](https://terraspace.cloud/docs/learn/aws/)
 - [Terraform Registry](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
 - [NAT Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html)
+- [Invoking a StartupScript](https://fabianlee.org/2021/05/28/terraform-invoking-a-startup-script-for-an-ec2-aws_instance/)
 
 -----
 
@@ -43,21 +44,45 @@ To use more modules, add them to the [Terrafile](https://terraspace.cloud/docs/t
 ------
 
 ## Module Structure
-
 ```sh
 terraspace-webserver/
-├─ config/
-│  ├─ terraform/
-│  │  ├─ backend.tf
-│  │  ├─ provider.tf
-├─ app/
-│  ├─ modules/
-│  ├─ stacks/
-├─ .gitignore
-├─ Gemfile
-├─ Terrafile
-├─ README.md
-````
+├── Gemfile
+├── Gemfile.lock
+├── README.md
+├── Terrafile
+├── app
+│   ├── modules
+│   │   ├── compute-base
+│   │   │   ├── README.md
+│   │   │   ├── files
+│   │   │   │   ├── apache_install.sh
+│   │   │   │   └── mysql_install.sh
+│   │   │   ├── main.tf
+│   │   │   ├── outputs.tf
+│   │   │   └── variables.tf
+│   │   └── network-base
+│   │       ├── README.md
+│   │       ├── main.tf
+│   │       ├── outputs.tf
+│   │       └── variables.tf
+│   └── stacks
+│       ├── compute-stack
+│       │   ├── README.md
+│       │   ├── main.tf
+│       │   ├── outputs.tf
+│       │   └── variables.tf
+│       └── network-stack
+│           ├── README.md
+│           ├── main.tf
+│           ├── outputs.tf
+│           └── variables.tf
+├── config
+│   ├── app.rb
+│   └── terraform
+│       ├── backend.tf
+│       └── provider.tf
+└── log
+```
 
 
 -------

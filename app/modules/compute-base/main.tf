@@ -21,8 +21,18 @@ resource "aws_instance" "apache_ws" {
   instance_type               = var.instance_type
   security_groups             = [var.public_security_group_id]
   associate_public_ip_address = true
-    key_name                    = aws_key_pair.deployer.key_name
-    user_data                   = fileexists("files/apache_install.sh") ? file("files/apache_install.sh") : null
+  key_name                    = aws_key_pair.deployer.key_name
+  # user_data                   = fileexists("./files/apache_install.sh") ? file("./files/apache_install.sh") : null
+  # user_data = file("files/apache_install.sh")
+
+  user_data = <<EOF
+		#!/bin/bash
+		yum update -y
+		yum install -y httpd.x86_64
+		systemctl start httpd.service
+		systemctl enable httpd.service
+		echo ?Hello World from $(hostname -f)? > /var/www/html/index.html
+	EOF
 
   tags = {
     Name = var.apache_tag
@@ -35,8 +45,10 @@ resource "aws_instance" "database_instance" {
   instance_type               = var.instance_type
   security_groups             = [var.private_security_group_id]
   # associate_public_ip_address = true
-    key_name                    = aws_key_pair.deployer.key_name
-    user_data                   = fileexists("files/mysql_install.sh") ? file("files/mysql_install.sh") : null
+  key_name                    = aws_key_pair.deployer.key_name
+  # user_data                   = fileexists("./files/mysql_install.sh") ? file("./files/mysql_install.sh") : null
+  # user_data = file("files/mysql_install.sh")
+  
 
   tags = {
     Name = var.database_tag
