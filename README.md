@@ -16,6 +16,20 @@ The idea of this project is to build a Webserver using Terraform Infrastructure.
 
 -----
 
+## Learning Path: 
+
+- error when specifing `apache_install.sh` as path in `compute-base`:
+```sh
+In this configuration, ${path.module} represents the directory path of the current module (in this case, the compute-base directory). By appending /files/apache_install.sh, it constructs the correct file path to the apache_install.sh script relative to the compute-base directory.
+```
+
+- error when using `.tfvars` file (above error brought me here):
+```sh
+In Terraspace, you can place your .tfvars file in the Terraspace project's config directory. By default, Terraspace looks for .tfvars files in this directory and automatically loads them during deployment.
+```
+
+----
+
 ## Initialize
 To initialize all the infrastructure stacks:
 
@@ -83,7 +97,6 @@ terraspace-webserver/
 │       └── provider.tf
 └── log
 ```
-
 
 -------
 

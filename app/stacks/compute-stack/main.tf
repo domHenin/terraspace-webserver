@@ -13,6 +13,6 @@ module "compute-base" {
   private_security_group_id = module.network-base.sg_priv_id_output
 }
 
-module "network-base" {
-  source = "../../modules/network-base"
-}
+# module "network-base" {
+#   source = "../../modules/network-base"
+# }
