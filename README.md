@@ -73,11 +73,13 @@ terraspace-webserver/
 │   │   │   │   └── mysql_install.sh
 │   │   │   ├── main.tf
 │   │   │   ├── outputs.tf
+│   │   │   ├── terraform.tfvars
 │   │   │   └── variables.tf
 │   │   └── network-base
 │   │       ├── README.md
 │   │       ├── main.tf
 │   │       ├── outputs.tf
+│   │       ├── terraform.tfvars
 │   │       └── variables.tf
 │   └── stacks
 │       ├── compute-stack
@@ -92,6 +94,8 @@ terraspace-webserver/
 │           └── variables.tf
 ├── config
 │   ├── app.rb
+│   ├── compute-stack.tfvars
+│   ├── network-stack.tfvars
 │   └── terraform
 │       ├── backend.tf
 │       └── provider.tf
