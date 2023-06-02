@@ -32,17 +32,14 @@ variable "private_security_group_id" {
 variable "instance_type" {
   description = "weberver instance type"
   type        = string
-  default     = "t2.micro"
 }
 
 variable "apache_tag" {
   description = "webserver tag"
   type        = string
-  default     = "apache_webserver_tag"
 }
 
 variable "database_tag" {
   description = "database tag"
   type        = string
-  default     = "database_tag"
 }
