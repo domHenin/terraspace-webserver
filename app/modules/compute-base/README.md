@@ -17,11 +17,17 @@ create module ```compute-base/.``` and will need to reference *public subnet id*
 - web-server-url
 - database-server-url
 - time-date
-
+<br></br>
 ---------------
 
-## Thought Bucket
-- 
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
+## Directory
+```
+compute-base/
+├── README.md
+├── files
+│   ├── apache_install.sh
+│   └── mysql_install.sh
+├── main.tf
+├── outputs.tf
+└── variables.tf
+```
