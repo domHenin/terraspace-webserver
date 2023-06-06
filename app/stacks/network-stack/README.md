@@ -22,7 +22,7 @@ raised issue in regards to `.tfvars` and how to use Terraspace Best Practices wi
 <br></br>
 ----
 ## Directory
-```
+```sh
 network-stack/
 ├── README.md
 ├── main.tf
