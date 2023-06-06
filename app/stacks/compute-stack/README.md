@@ -6,7 +6,7 @@
 ## Learning Path
 - To utilize the `Child Module Variable` in the ***stack***, assign it the value of the corresponding ***Variable*** at the same directory level. The ***Variable*** closely resembles the `Child Module Variable`. Since the `.tfvars` file is located in the ***stack***, Terraspace automatically uses this file for the variables.
 `./app/stacks/network-stack/main.tf`
-![image of above comment](./../../../img/code-snap-terraspace-webserver.png)
+![image of above comment](./../../../img/code-snap-compute-stack.png)
 
 -----
 
