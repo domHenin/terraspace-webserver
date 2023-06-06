@@ -10,13 +10,13 @@ module "compute-base" {
   apache_tag    = var.apache_tag
   database_tag  = var.database_tag  
 
-  public_subnet_id  = module.network-base.sub_pub_id_output
-  private_subnet_id = module.network-base.sub_priv_id_output
+  public_subnet_id  = var.public_subnet_id
+  private_subnet_id = var.private_subnet_id
 
-  public_security_group_id  = module.network-base.sg_ajar_id_output
-  private_security_group_id = module.network-base.sg_priv_id_output
+  public_security_group_id  = var.public_security_group_id
+  private_security_group_id = var.private_security_group_id
 }
 
-module "network-base" {
-  source = "../../modules/network-base"
-}
+# module "network-base" {
+#   source = "../../modules/network-base"
+# }
