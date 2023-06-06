@@ -4,7 +4,7 @@
 
 
 ## Documentation
-create module ```network-base/.``` and will need to reference *web erver URL*, *database server URL*, and *Time && Day* of created module. 
+create module ```network-base/.``` and will need to reference *web server URL*, *database server URL*, and *Time && Day* of created module. 
 
 currently **public security group** is attached to database. *this was done for testing purposes*.
 

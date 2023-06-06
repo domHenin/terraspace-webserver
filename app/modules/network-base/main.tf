@@ -66,6 +66,10 @@ resource "aws_route_table" "rt_pub_rsrc" {
 resource "aws_route_table_association" "rt_pub_asso" {
   subnet_id      = aws_subnet.sub_pub_rsrc.id
   route_table_id = aws_route_table.rt_pub_rsrc.id
+
+  # tags = {
+  #   Name = var.rt_pub_asso_tag
+  # }
 }
 
 #-- Resource: AWS Security Group Open

@@ -56,10 +56,10 @@ variable "rt_pub_tag" {
 
 
 
-variable "rt_pub_asso_tag" {
-  description = "public route table association tag"
-  type        = string
-}
+# variable "rt_pub_asso_tag" {
+#   description = "public route table association tag"
+#   type        = string
+# }
 
 # ------------------------------
 
