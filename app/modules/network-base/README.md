@@ -11,20 +11,19 @@ currently **public security group** is attached to database. *this was done for 
 
 -----
 
-## NeedTo:
-- 
--------
-
 ## `./outputs`
 - vpc_id_output
 - sub_pub__id_output
 - sub_priv_id_output
 - igw_id_output
-
+<br></br>
 ---------------
 
-## Thought Bucket
-- 
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
+## Directory
+```
+network-base/
+├── README.md
+├── main.tf
+├── outputs.tf
+└── variables.tf
+```

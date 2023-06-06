@@ -55,6 +55,11 @@ To deploy individual stacks:
 
 To use more modules, add them to the [Terrafile](https://terraspace.cloud/docs/terrafile/).
 
+---
+## Learning Path
+- To utilize the `Child Module Variable` in the ***stack***, assign it the value of the corresponding ***Variable*** at the same directory level. The ***Variable*** closely resembles the `Child Module Variable`. Since the `.tfvars` file is located in the ***stack***, Terraspace automatically uses this file for the variables.
+`./app/stacks/network-stack/main.tf`
+![image of above comment](./img/code-snap-terraspace-webserver.png)
 ------
 
 ## Module Structure
@@ -73,29 +78,31 @@ terraspace-webserver/
 │   │   │   │   └── mysql_install.sh
 │   │   │   ├── main.tf
 │   │   │   ├── outputs.tf
-│   │   │   ├── terraform.tfvars
 │   │   │   └── variables.tf
 │   │   └── network-base
 │   │       ├── README.md
 │   │       ├── main.tf
 │   │       ├── outputs.tf
-│   │       ├── terraform.tfvars
 │   │       └── variables.tf
 │   └── stacks
 │       ├── compute-stack
 │       │   ├── README.md
 │       │   ├── main.tf
 │       │   ├── outputs.tf
+│       │   ├── tfvars
+│       │   │   ├── base.tfvars
+│       │   │   └── dev.tfvars
 │       │   └── variables.tf
 │       └── network-stack
 │           ├── README.md
 │           ├── main.tf
 │           ├── outputs.tf
+│           ├── tfvars
+│           │   ├── base.tfvars
+│           │   └── dev.tfvars
 │           └── variables.tf
 ├── config
 │   ├── app.rb
-│   ├── compute-stack.tfvars
-│   ├── network-stack.tfvars
 │   └── terraform
 │       ├── backend.tf
 │       └── provider.tf
