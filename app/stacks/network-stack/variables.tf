@@ -62,11 +62,11 @@ variable "rt_pub_tag" {
 
 
 
-variable "rt_pub_asso_tag" {
-  description = "public route table association tag"
-  type        = string
-  # default     = "public_route_table_association"
-}
+# variable "rt_pub_asso_tag" {
+#   description = "public route table association tag"
+#   type        = string
+#   # default     = "public_route_table_association"
+# }
 
 # ------------------------------
 

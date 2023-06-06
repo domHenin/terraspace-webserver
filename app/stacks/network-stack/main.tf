@@ -7,28 +7,28 @@ module "network-base" {
   source = "../../modules/network-base"
 
   
-#   vpc_cidr = "172.69.0.0/16"
-#   vpc_tags = "vpc_ws"
+  vpc_cidr = var.vpc_cidr
+  vpc_tags = var.vpc_tags
 
-#   pub_sub_cidr = "172.69.1.0/24"
-#   pub_sub_tags = "public_subnet"
+  pub_sub_cidr = var.pub_sub_cidr
+  pub_sub_tags = var.pub_sub_tags
 
-# #-- private subnet
-#   priv_sub_cidr = "172.69.2.0/24"
-#   priv_sub_tags = "private_subnet"
+#-- private subnet
+  priv_sub_cidr = var.priv_sub_cidr
+  priv_sub_tags = var.priv_sub_tags
 
-# #-- internet gateway 
-#   wl_igw_tags = "internet-gateway-ws"
+#-- internet gateway 
+  wl_igw_tags = var.wl_igw_tags
 
-# #-- route table:- public
-#   rt_pub_tag     = "webserver_public_route_table"
-#   rt_pub_ass_tag = "public_route_table_association"
+#-- route table:- public
+  rt_pub_tag     = var.rt_pub_tag
+  # rt_pub_asso_tag = var.rt_pub_asso_tag
 
-# #-- security group:- public
-#   sg_ajar_name = "ajar_sg"
-#   ajar_sg_tag  = "sg_ajar_tag"
+#-- security group:- public
+  sg_ajar_name = var.sg_ajar_name
+  ajar_sg_tag  = var.ajar_sg_tag
 
-# #-- security group:- private
-#   sg_priv_name = "private_sg"
-#   priv_sg_tag  = "sg_private_tag"
+#-- security group:- private
+  sg_priv_name = var.sg_priv_name
+  priv_sg_tag  = var.priv_sg_tag
 }
