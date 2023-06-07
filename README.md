@@ -18,6 +18,10 @@ The idea of this project is to build a Webserver using Terraform Infrastructure.
 
 ## Learning Path: 
 - To utilize the `Child Module Variable` in the ***stack***, assign it the value of the corresponding ***Variable*** at the same directory level. The ***Variable*** closely resembles the `Child Module Variable`. Since the `.tfvars` file is located in the ***stack***, Terraspace automatically uses this file for the variables.
+- **Dependencies**: To configure dependencies, you simply wire stack outputs to inputs variables of another stack. Here is an example: (the instance needs the `subnet_id` so using this syntax and pointing to the **stack** and **output**)
+```sh
+public_subnet_id = <%= output('network-stack.sub_pub_id_output') %>
+```
 
 - error when specifing `apache_install.sh` as path in `compute-base`:
 ```sh
@@ -56,11 +60,6 @@ To deploy individual stacks:
 
 To use more modules, add them to the [Terrafile](https://terraspace.cloud/docs/terrafile/).
 
----
-## Learning Path
-- To utilize the `Child Module Variable` in the ***stack***, assign it the value of the corresponding ***Variable*** at the same directory level. The ***Variable*** closely resembles the `Child Module Variable`. Since the `.tfvars` file is located in the ***stack***, Terraspace automatically uses this file for the variables.
-`./app/stacks/network-stack/main.tf`
-![image of above comment](./img/code-snap-terraspace-webserver.png)
 ------
 
 ## Module Structure

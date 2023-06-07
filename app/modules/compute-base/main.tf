@@ -10,9 +10,9 @@ data "aws_ssm_parameter" "ami_id" {
 
 # Key Pair
 resource "aws_key_pair" "deployer" {
-  key_name   = "provision_key"
-  public_key = file("~/.ssh/wonder_lab.pub") # dell-wsl_key
-  # public_key = file("~/.ssh/terraspace_webserver_key.pub") #work-wsl_key
+  key_name = "provision_key"
+  # public_key = file("~/.ssh/wonder_lab.pub") # dell-wsl_key
+  public_key = file("~/.ssh/terraspace_webserver_key.pub") #work-wsl_key
 }
 
 resource "aws_instance" "apache_ws" {
@@ -25,15 +25,6 @@ resource "aws_instance" "apache_ws" {
   # user_data                   = fileexists("./files/apache_install.sh") ? file("./files/apache_install.sh") : null
 
   user_data = file("${path.module}/files/apache_install.sh")
-
-  # user_data = <<EOF
-  # 	#!/bin/bash
-  # 	yum update -y
-  # 	yum install -y httpd.x86_64
-  # 	systemctl start httpd.service
-  # 	systemctl enable httpd.service
-  # 	echo ?Hello World from $(hostname -f)? > /var/www/html/index.html
-  # EOF
 
   tags = {
     Name = var.apache_tag
